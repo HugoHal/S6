@@ -35,8 +35,8 @@ int main(int argc, char *argv[]) {
     perror("Client : problème à connect");
     close(ds);
     exit(1);
-  }
-  printf("connecté");
+  }else {
+  printf("connecté");}
 
   /* Etape 4 : envoyer un message au serveur */
   char m[1500] = "caca feur \n";
