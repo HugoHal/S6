@@ -8,6 +8,47 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+int sendTCP(int sock, void *msg, int sizeMsg) {
+    while (sizeMsg > 0) {
+        int sent = send(sock, msg, sizeMsg, 0);
+        
+        if (sent > 0) {
+            sizeMsg -= sent; // Réduit la taille des données restantes à envoyer
+            msg = (char *)msg + sent; // Avance le pointeur de message
+        } else {
+            if (sent == 0) {
+                printf("Connexion fermée\n");
+                return 0; // La connexion a été fermée
+            } else {
+                perror("Erreur lors de l'envoi");
+                return -1; // Erreur lors de l'envoi
+            }
+        }
+    }
+    return 1; // Envoi réussi
+}
+
+int recvTCP(int sock, void *msg, int sizeMsg) {
+    while (sizeMsg > 0) {
+        int recvd = recv(sock, msg, sizeMsg, 0);
+        
+        if (recvd > 0) {
+            sizeMsg -= recvd; // Réduit la taille des données restantes à recevoir
+            msg = (char *)msg + recvd; // Avance le pointeur de message
+        } else {
+            if (recvd == 0) {
+                printf("Connexion fermée\n");
+                return 0; // La connexion a été fermée
+            } else {
+                perror("Erreur lors de la réception");
+                return -1; // Erreur lors de la réception
+            }
+        }
+    }
+    return 1; // Réception réussie
+}
+
+
 /* Programme client */
 
 int main(int argc, char *argv[]) {

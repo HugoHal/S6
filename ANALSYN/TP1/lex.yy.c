@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 11
-#define YY_END_OF_BUFFER 12
+#define YY_NUM_RULES 6
+#define YY_END_OF_BUFFER 7
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -360,28 +360,28 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[19] =
+static const flex_int16_t yy_accept[14] =
     {   0,
-        0,    0,   12,   10,    9,    9,    7,    8,    5,    3,
-        4,    6,    2,    1,    9,    2,    1,    0
+        0,    0,    7,    5,    4,    6,    2,    1,    4,    3,
+        2,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
-        1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    1,    1,    1,    1,    1,    1,    1,    4,
-        5,    6,    7,    1,    8,    1,    9,   10,   10,   10,
-       10,   10,   10,   10,   10,   10,   10,    1,    1,    1,
-        1,    1,    1,    1,   11,   11,   11,   11,   11,   11,
-       11,   11,   11,   11,   11,   11,   11,   11,   11,   11,
-       11,   11,   11,   11,   11,   11,   11,   11,   11,   11,
-        1,    1,    1,    1,    1,    1,   11,   11,   11,   11,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 
-       11,   11,   11,   11,   11,   11,   11,   11,   11,   11,
-       11,   11,   11,   11,   11,   11,   11,   11,   11,   11,
-       11,   11,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -398,36 +398,33 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[12] =
+static const YY_CHAR yy_meta[4] =
     {   0,
-        1,    2,    2,    1,    1,    1,    1,    1,    1,    1,
-        1
+        1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[20] =
+static const flex_int16_t yy_base[14] =
     {   0,
-        0,    0,   17,   18,    0,    0,   18,   18,   18,   18,
-       18,   18,    6,    4,    0,    4,    2,   18,   10
+        0,    3,   11,   12,    5,   12,    7,   12,    0,   12,
+        0,   12,   12
     } ;
 
-static const flex_int16_t yy_def[20] =
+static const flex_int16_t yy_def[14] =
     {   0,
-       18,    1,   18,   18,   19,   19,   18,   18,   18,   18,
-       18,   18,   18,   18,   19,   18,   18,    0,   18
+       13,   13,   13,   13,   13,   13,   13,   13,    5,   13,
+        7,   13,    0
     } ;
 
-static const flex_int16_t yy_nxt[30] =
+static const flex_int16_t yy_nxt[16] =
     {   0,
-        4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
-       14,   15,   17,   16,   17,   16,   18,    3,   18,   18,
-       18,   18,   18,   18,   18,   18,   18,   18,   18
+        4,    5,    6,    4,    7,    8,    9,   10,   11,   12,
+       13,    3,   13,   13,   13
     } ;
 
-static const flex_int16_t yy_chk[30] =
+static const flex_int16_t yy_chk[16] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,   19,   17,   16,   14,   13,    3,   18,   18,   18,
-       18,   18,   18,   18,   18,   18,   18,   18,   18
+        1,    1,    1,    2,    2,    2,    5,    5,    7,    7,
+        3,   13,   13,   13,   13
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -444,14 +441,13 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "analflex.l"
-#line 2 "analflex.l"
+#line 1 "delblancs.l"
+#line 2 "delblancs.l"
 #include <stdio.h>
-#include <stdlib.h>
 
-int ligne = 1;   // Compteur de lignes, utile pour afficher la ligne d'erreur
-#line 454 "lex.yy.c"
-#line 455 "lex.yy.c"
+FILE *output_file;
+#line 450 "lex.yy.c"
+#line 451 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -631,6 +627,9 @@ extern int yylex (void);
 #endif
 
 #define YY_RULE_SETUP \
+	if ( yyleng > 0 ) \
+		YY_CURRENT_BUFFER_LVALUE->yy_at_bol = \
+				(yytext[yyleng - 1] == '\n'); \
 	YY_USER_ACTION
 
 /** The main scanner function which does all the work.
@@ -668,10 +667,10 @@ YY_DECL
 		}
 
 	{
-#line 8 "analflex.l"
+#line 7 "delblancs.l"
 
 
-#line 675 "lex.yy.c"
+#line 674 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -686,6 +685,7 @@ YY_DECL
 		yy_bp = yy_cp;
 
 		yy_current_state = (yy_start);
+		yy_current_state += YY_AT_BOL();
 yy_match:
 		do
 			{
@@ -698,13 +698,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 19 )
+				if ( yy_current_state >= 14 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 18 );
+		while ( yy_base[yy_current_state] != 12 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -729,62 +729,42 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
+*yy_cp = (yy_hold_char); /* undo effects of setting up yytext */
+(yy_c_buf_p) = yy_cp -= 1;
+YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 10 "analflex.l"
-{ printf("Jeton: MOT, Lexème: %s\n", yytext); }
+#line 9 "delblancs.l"
+{ /* Ignorer les lignes blanches */ }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 11 "analflex.l"
-{ printf("Jeton: NOMBRE, Lexème: %s\n", yytext); }
+#line 10 "delblancs.l"
+{ /* Supprimer les espaces en début de ligne */ }
 	YY_BREAK
 case 3:
+*yy_cp = (yy_hold_char); /* undo effects of setting up yytext */
+(yy_c_buf_p) = yy_cp -= 1;
+YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 12 "analflex.l"
-{ printf("Jeton: PLUS, Lexème: %s\n", yytext); }
+#line 11 "delblancs.l"
+{ /* Ignorer les espaces en fin de ligne */ }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 13 "analflex.l"
-{ printf("Jeton: MOINS, Lexème: %s\n", yytext); }
+#line 12 "delblancs.l"
+{ fprintf(output_file, " "); fflush(output_file); }  // Remplacer les espaces multiples par un seul espace
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 14 "analflex.l"
-{ printf("Jeton: FOIS, Lexème: %s\n", yytext); }
+#line 13 "delblancs.l"
+{ fprintf(output_file, "%c", yytext[0]); fflush(output_file); }  // Imprimer les autres caractères
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 15 "analflex.l"
-{ printf("Jeton: DIVISE, Lexème: %s\n", yytext); }
-	YY_BREAK
-case 7:
-YY_RULE_SETUP
-#line 16 "analflex.l"
-{ printf("Jeton: PARENTHESE_OUVRANTE, Lexème: %s\n", yytext); }
-	YY_BREAK
-case 8:
-YY_RULE_SETUP
-#line 17 "analflex.l"
-{ printf("Jeton: PARENTHESE_FERMANTE, Lexème: %s\n", yytext); }
-	YY_BREAK
-case 9:
-/* rule 9 can match eol */
-YY_RULE_SETUP
-#line 18 "analflex.l"
-{ /* Ignore les espaces et les retours à la ligne */ }
-	YY_BREAK
-case 10:
-YY_RULE_SETUP
-#line 19 "analflex.l"
-{ printf("Jeton: AUTRE, Lexème: %s\n", yytext); }  // Pour tout autre caractère (reconnaît tout caractère isolé)
-	YY_BREAK
-case 11:
-YY_RULE_SETUP
-#line 21 "analflex.l"
+#line 15 "delblancs.l"
 ECHO;
 	YY_BREAK
-#line 788 "lex.yy.c"
+#line 768 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1069,6 +1049,7 @@ static int yy_get_next_buffer (void)
 	char *yy_cp;
     
 	yy_current_state = (yy_start);
+	yy_current_state += YY_AT_BOL();
 
 	for ( yy_cp = (yytext_ptr) + YY_MORE_ADJ; yy_cp < (yy_c_buf_p); ++yy_cp )
 		{
@@ -1081,7 +1062,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 19 )
+			if ( yy_current_state >= 14 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1109,11 +1090,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 19 )
+		if ( yy_current_state >= 14 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 18);
+	yy_is_jam = (yy_current_state == 13);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1228,6 +1209,8 @@ static int yy_get_next_buffer (void)
 	c = *(unsigned char *) (yy_c_buf_p);	/* cast for 8-bit char's */
 	*(yy_c_buf_p) = '\0';	/* preserve yytext */
 	(yy_hold_char) = *++(yy_c_buf_p);
+
+	YY_CURRENT_BUFFER_LVALUE->yy_at_bol = (c == '\n');
 
 	return c;
 }
@@ -1789,11 +1772,38 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 21 "analflex.l"
+#line 15 "delblancs.l"
 
 
-int main() {
-    yylex();
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <fichier_entrée>\n", argv[0]);
+        return 1;
+    }
+
+    FILE *input_file = fopen(argv[1], "r");  // Ouvrir le fichier d'entrée en lecture
+    if (input_file == NULL) {
+        perror("Erreur lors de l'ouverture du fichier d'entrée");
+        return 1;
+    }
+
+    output_file = fopen("output.txt", "w");  // Ouvrir le fichier en mode écriture ("w")
+    if (output_file == NULL) {
+        perror("Erreur lors de l'ouverture du fichier de sortie");
+        fclose(input_file);  // N'oublie pas de fermer le fichier d'entrée si l'ouverture du fichier de sortie échoue
+        return 1;
+    }
+
+    yyin = input_file;  // Rediriger l'entrée vers le fichier
+    printf("Début de l'analyse...\n");
+
+    yylex();  // Lancer l'analyseur lexical
+
+    printf("Analyse terminée.\n");
+
+    fclose(output_file);  // Fermer le fichier de sortie
+    fclose(input_file);   // Fermer le fichier d'entrée après utilisation
+
     return 0;
 }
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <string.h> // Pour strcmp
+#include <string.h>
+#include <stdlib.h> // Pour malloc et free
 #include "image_ppm.h"
 
 int main(int argc, char* argv[])
@@ -14,7 +15,7 @@ int main(int argc, char* argv[])
     }
 
     sscanf(argv[1], "%s", cNomImgLue);
-    sscanf(argv[3], "%d", &indice); // Correction : ajouter le '&'
+    sscanf(argv[3], "%d", &indice);
     sscanf(argv[2], "%s", lc);
 
     OCTET *ImgIn;
@@ -23,31 +24,37 @@ int main(int argc, char* argv[])
     int nTaille = nH * nW;
 
     allocation_tableau(ImgIn, OCTET, nTaille);
-    lire_image_pgm(cNomImgLue, ImgIn, nTaille);
+    lire_image_pgm(cNomImgLue, ImgIn, nTaille); // Appel sans capturer la valeur de retour
 
     // Déterminer la taille en fonction de l'argument "lin" ou "col"
     if (strcmp(lc, "col") == 0)
-        taillecl = nH; // Longueur de la colonne
+        taillecl = nH;
     else if (strcmp(lc, "lin") == 0)
-        taillecl = nW; // Longueur de la ligne
+        taillecl = nW;
     else
     {
-        printf("Erreur : deuxième argument doit être 'lin' ou 'col'.\n");
+        printf("Erreur : Le deuxième argument (%s) doit être 'lin' ou 'col'.\n", lc);
         exit(1);
     }
 
     // Allocation dynamique pour le tableau des fréquences
-    int* res = new int[256](); // Tableau de 256 niveaux de gris initialisés à 0
+    int* res = (int*)malloc(256 * sizeof(int)); // Allocation pour 256 niveaux de gris
+    if (res == NULL) {
+        printf("Erreur d'allocation mémoire pour 'res'.\n");
+        free(ImgIn);
+        exit(1);
+    }
+    memset(res, 0, 256 * sizeof(int));  // Initialisation à 0
 
     // Calcul des fréquences
     if (strcmp(lc, "col") == 0) {
         for (int i = 0; i < nH; i++) {
-            int pixelValue = ImgIn[i * nW + indice]; // Pixel de la colonne
+            int pixelValue = ImgIn[i * nW + indice];
             res[pixelValue]++;
         }
     } else {
         for (int i = 0; i < nW; i++) {
-            int pixelValue = ImgIn[indice * nW + i]; // Pixel de la ligne
+            int pixelValue = ImgIn[indice * nW + i];
             res[pixelValue]++;
         }
     }
@@ -56,6 +63,7 @@ int main(int argc, char* argv[])
     FILE* file = fopen("fich.dat", "w");
     if (file == NULL) {
         printf("Erreur : impossible d'ouvrir le fichier fich.dat.\n");
+        free(res);
         free(ImgIn);
         exit(1);
     }
@@ -68,7 +76,7 @@ int main(int argc, char* argv[])
     printf("Résultats écrits dans fich.dat\n");
 
     // Libération de la mémoire
-    delete[] res;
+    free(res);
     free(ImgIn);
 
     return 0;
