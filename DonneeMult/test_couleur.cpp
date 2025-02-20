@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 
    OCTET *ImgIn, *ImgOut;
    
-   lire_nb_lignes_colonnes_image_ppm(cNomImgLue, &nH, &nW);
+   lire_nb_lignes_colonnes_image_pgm(cNomImgLue, &nH, &nW);
    nTaille = nH * nW;
   
    int nTaille3 = nTaille * 3;
