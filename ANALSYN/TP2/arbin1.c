@@ -1,66 +1,47 @@
-#include <stdlib.h>
-#include <stdio.h>
-
+// arbin1.c
 #include "arbin.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-/*----------------------GREFFERGAUCHE-----------------------------------------*/
-void ab_greffergauche(Arbin pere, Arbin filsg) {
-  ab_vider(&ab_sag(pere));		/* vider l'ancien sag */
-  pere->fg=filsg;		/* le remplacer */
+// Définition des fonctions qui utilisent Noeud, sans redéfinir la structure
+
+Noeud* creer_noeud(int type, int valeur) {
+    Noeud* n = (Noeud*)malloc(sizeof(Noeud));
+    if (n == NULL) {
+        fprintf(stderr, "Erreur d'allocation mémoire\n");
+        exit(1);
+    }
+    n->type = type;
+    n->valeur = valeur;
+    n->gauche = NULL;
+    n->droite = NULL;
+    return n;
 }
 
-/*----------------------GREFFERDROITE-----------------------------------------*/
-void ab_grefferdroite(Arbin pere, Arbin filsd){
-  ab_vider(&ab_sad(pere));
-  pere->fd=filsd;
+void afficher_arbre(Noeud* arbre) {
+    if (arbre != NULL) {
+        if (arbre->type == 1) {  // type 1 : nombre
+            printf("%d", arbre->valeur);
+        } else {  // type 2 : opération
+            printf("(");
+            afficher_arbre(arbre->gauche);
+            printf(" %d ", arbre->valeur);
+            afficher_arbre(arbre->droite);
+            printf(")");
+        }
+    }
 }
 
-/*----------------------CONSTRUIRE--------------------------------------------*/
-Arbin ab_construire(int rac, Arbin g, Arbin d){
-  Arbin nouv = (Arbin) malloc(sizeof(Noeudbin)) ;
-  nouv->val=rac;
-  nouv->fg=g;
-  nouv->fd=d;
-  return(nouv) ;
-}
-
-/*----------------------COPIERA-----------------------------------------------*/
-Arbin ab_copier(Arbin a){
-  Arbin nouv;			/* nouvel arbin copie */
-  if (ab_vide(a)) return NULL;	/* arbin vide */
-  nouv = (Arbin) malloc(sizeof(Noeudbin)) ;
-  nouv->val=a->val;
-  nouv->fg=ab_copier(ab_sag(a));
-  nouv->fd=ab_copier(ab_sad(a));
-  return(nouv) ;
-} 
-
-/*----------------------VIDERA------------------------------------------------*/
-void ab_vider(Arbin *pa){	
-  Arbin *pg,*pd;			/* arbins de sauvegarde */
-  if (ab_vide(*pa)) return;		/* arbin vide */
-  pg=&(ab_sag(*pa));			/* possible car sag() est une macro */
-  pd=&(ab_sad(*pa));
-  ab_vider(pg);
-  ab_vider(pd);
-  free(*pa);			/* on est sur une feuille */
-  *pa=NULL;			/* mettre le pointeur a NULL  */
-  return;
-} 
-/*----------------------AFFICHERAR-fonction privée (static) ------------------*/
-static void ab_afficherR(Arbin a,int indent){
-  int i;
-  for (i=0;i<indent;i++)
-    printf("  ");		/* 2 espaces par profondeur d'indentation */
-  if (ab_vide(a))
-    printf("\r");
-  else {
-    printf("%c\n",ab_racine(a));
-    ab_afficherR(ab_sag(a),indent+1);
-    ab_afficherR(ab_sad(a),indent+1);
-  }
-}
-/*----------------------AFFICHERA---------------------------------------------*/
-void ab_afficher(Arbin a){
-  ab_afficherR(a,0);
+int evaluer_arbre(Noeud* arbre) {
+    if (arbre == NULL) {
+        return 0;
+    }
+    if (arbre->type == 1) {
+        return arbre->valeur;
+    }
+    // Opérations : ici, on gère seulement l'addition pour l'exemple
+    if (arbre->valeur == '+') {
+        return evaluer_arbre(arbre->gauche) + evaluer_arbre(arbre->droite);
+    }
+    return 0;
 }
