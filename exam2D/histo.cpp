@@ -30,11 +30,11 @@ int main(int argc, char* argv[])
     allocation_tableau(ImgOut, OCTET, nTaille);
 
     for (int i = 0; i < nH; i++) {
-    for (int j = 0; j < nW; j++) {
-        int pixelValue = ImgIn[i * nW + j]; // Valeur du pixel
-        tableau[pixelValue]++; // Incrémente le niveau de gris correspondant
+        for (int j = 0; j < nW; j++) {
+            int pixelValue = ImgIn[i * nW + j]; // Valeur du pixel
+            tableau[pixelValue]++; // Incrémente le niveau de gris correspondant
+        }
     }
-}
     
     for (int i = 0; i < 256; i++) {
         cout << "tableau[" << i << "] = " << tableau[i] << endl;

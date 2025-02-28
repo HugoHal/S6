@@ -13,6 +13,7 @@ int main(int argc, char* argv[]) {
     
     sscanf(argv[1], "%s", cNomImgLue);
     sscanf(argv[2], "%s", cNomImgEcrite);
+
     
     lire_nb_lignes_colonnes_image_pgm(cNomImgLue, &nH, &nW);
     nTaille = nH * nW;
