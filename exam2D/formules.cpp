@@ -12,12 +12,12 @@ double distancequadratique(OCTET *ImgIn1, OCTET *ImgIn2, int nTaille) {
         double diff = ImgIn1[i] - ImgIn2[i];
         distquad += diff * diff;
     }
-    return distquad;
+    return distquad/nTaille;
 }
 
 int psnr(OCTET *ImgIn1, OCTET *ImgIn2, int nTaille) {
     double distquad = distancequadratique(ImgIn1, ImgIn2, nTaille);
-    return 10.0 * log10((255 * 255) / (distquad / (double)nTaille));
+    return 10.0 * log10((255 * 255) / (distquad));
 }
 
 

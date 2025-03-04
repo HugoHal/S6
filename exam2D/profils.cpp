@@ -16,8 +16,8 @@ int main(int argc, char *argv[]) {
 
   // Lecture des arguments
   sscanf(argv[1], "%s", cNomImgLue);
-  sscanf(argv[2], "%d", &tempLoc); // Lecture en tant qu'entier
-  loc = (tempLoc != 0);            // Conversion en booléen
+  sscanf(argv[2], "%d", &tempLoc); 
+  loc = (tempLoc != 0);            
   sscanf(argv[3], "%d", &indice);
 
   // Validation de la valeur de loc
@@ -39,19 +39,13 @@ int main(int argc, char *argv[]) {
   lire_image_pgm(cNomImgLue, ImgIn, nH * nW);
   allocation_tableau(ImgOut, OCTET, nTaille);
 
-  int t[256] = {0};
-
   if (loc) { // C'est une ligne
+    int t[nH] = {0};
     for (int j = 0; j < nW; j++) {
-      t[ImgIn[indice * nW + j]] += 1;
+      t[j] = ImgIn[indice * nW + j];
     }
-  } else {
-    for (int i = 0; i < nH; i++) {
-      t[ImgIn[i * nW + indice]] += 1;
-    }
-  }
 
-  FILE *file = fopen("resultat/profil.dat", "w");
+    FILE *file = fopen("resultat/profil.dat", "w");
   if (file == nullptr) {
     perror("Erreur lors de l'ouverture du fichier");
     return 1;
@@ -63,6 +57,28 @@ int main(int argc, char *argv[]) {
 
   fclose(file);
   free(ImgIn);
+  } else {
+          int t[nW] = {0};
+    for (int i = 0; i < nH; i++) {
+      t[i] = ImgIn[i * nW + indice];
+    }
+
+
+    FILE *file = fopen("resultat/profil.dat", "w");
+  if (file == nullptr) {
+    perror("Erreur lors de l'ouverture du fichier");
+    return 1;
+  }
+
+  for (int i = 0; i < 256; i++) {
+    fprintf(file, "%d %d\n", i, t[i]); // Écrit chaque valeur avec son index
+  }
+
+  fclose(file);
+  free(ImgIn);
+  }
+
+  
 
   return 1;
 }
