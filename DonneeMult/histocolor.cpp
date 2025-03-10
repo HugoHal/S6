@@ -39,8 +39,8 @@ int main(int argc, char* argv[])
         nB = ImgIn[i+2];
         
         tableaurouge[nR]++;
-        tableaubleu[nG]++;
-        tableauvert[nB]++;
+        tableaubleu[nB]++;
+        tableauvert[nG]++;
     }
     
     for (int i = 0; i < 256; i++) {
