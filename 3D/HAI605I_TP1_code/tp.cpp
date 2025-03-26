@@ -100,7 +100,7 @@ void setUnitSphere(Mesh &o_mesh, int nX = 20, int nY = 20) {
     }
   }
   for(int i=0; i <=nX;i++){
-    for (int j=0; j<= nY; i++){
+    for (int j=0; j<= nY; j++){
       int p1 = i*nY+j;
       int p2 = i*nY+j+1;
       int p3 = (i+1)*nY+j;
