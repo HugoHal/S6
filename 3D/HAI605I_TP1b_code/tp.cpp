@@ -432,27 +432,29 @@ void key(unsigned char keyPressed, int x, int y) {
     display_normals = !display_normals;
     break;
 
-  case '1': // Toggle loaded mesh display
+  case 'a': // Toggle loaded mesh display
     display_loaded_mesh = !display_loaded_mesh;
     break;
 
-  case '2': // Toggle unit sphere mesh display
+  case 'z': // Toggle unit sphere mesh display
     display_unit_sphere = !display_unit_sphere;
     break;
 
-    case '-':
+    case 'v':
     unit_sphere.vertices.clear();
     unit_sphere.normals.clear();
         NX -=1;
         NY -=1;
         setUnitSphere(unit_sphere,NX,NY);
+    break;
 
-    case '+':
+    case 'p':
     unit_sphere.vertices.clear();
     unit_sphere.normals.clear();
         NX +=1;
         NY +=1;
         setUnitSphere(unit_sphere,NX,NY);
+    break;
 
   default:
     break;
