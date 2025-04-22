@@ -1,5 +1,6 @@
 import numpy as np
 from collections import defaultdict
+import sys
 
 def find_kmers(sequence, k):
     """Crée une table d'index des k-mers d'une séquence."""
@@ -90,30 +91,3 @@ seq1 = "ACGTGCACTG"
 seq2 = "TGCACTGACG"
 score = fasta_alignment(seq1, seq2)
 print("Meilleur score d'alignement local:", score)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-while(True):
-    print("NIGGER")

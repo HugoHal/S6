@@ -1,0 +1,27 @@
+1)
+   Pctrl                                                       P1                                                 P2
+
+                                                         Crée la file
+
+                                     <======        demande l'accés à la ressource
+
+Donne l'accés à la ressoucre         ======>            Utilise la ressource
+
+                                    <=========================================================    demande l'accés à la ressource
+
+vérifie disponibilité
+
+                                                        Libère la ressource
+
+vérifie disponibilité
+                                                    
+Donne l'accés à la ressource        =========================================================>
+
+                                                                                                     Utilise la ressource
+
+                                                                                                     Libère la ressource
+
+
+2) la création revient à Pi
+
+3) Je pense pas d'interbloquage ni de famine

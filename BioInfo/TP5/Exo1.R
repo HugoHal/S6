@@ -128,3 +128,168 @@ boxplot(data, col=c("blue", "red"))
 legend("topleft", legend = c("N(0,1)","N(3,4)"), col= c( "blue" ,"red" ) , lty=1)
 
 #exercice 30
+
+
+
+#TP6
+
+mais = read.table("mais.txt", header=T)
+
+#exercice 1
+summary(mais)
+
+#exercice 2
+newcol = data.frame(Censure.droite = as.factor(mais$Censure.droite))
+newmais = mais[,-c(15)]
+mais = cbind(newmais,newcol)
+summary(mais)
+
+#exercice 3
+quanti = c(2,3,4,5,12,14)
+quali = c(6,7,8,9,10,11,13,15)
+
+#exercice 4
+pairs(maisquanti)
+
+#exercice 5
+pairs(maisquanti, col=ifelse(mais$Attaque=="Oui", "pink", "darkgreen"))
+
+#exercice 6
+boxplot ( mais$Hauteur ~ mais$Parcelle , col = c("yellow","lightblue","darkgreen", "orange"))
+
+#exercice 7
+maishauteur = subset(mais,!is.na(Hauteur) & !is.na(Parcelle), select = c(11,12))
+maishauteur
+var(maishauteur$Hauteur.J7)
+
+length(mais$Hauteur ~ mais$Parcelle)
+
+#exercice 8
+SCT = function(valeur){
+  moyenne = mean(valeur)
+  return (sum((valeur-moyenne)**2))
+}
+
+SCE <- function(valeur, groupe) {
+  moyennes_groupes <- tapply(valeur, groupe, mean)  # Moyenne par groupe
+  tailles_groupes <- table(groupe)  # Effectifs par groupe
+  moyenne_globale <- mean(valeur)
+  return(sum(tailles_groupes * (moyennes_groupes - moyenne_globale)^2))
+}
+
+SCR = function(valeur, groupe){
+  return (SCT(valeur)-SCE(valeur, groupe))
+}
+
+rapport = function(valeur, groupe){
+  valid_idx = !is.na(valeur) & !is.na(groupe)
+
+  if (sum(valid_idx) == 0) {
+    return(NA)
+  }
+  
+  valeur_filtre = valeur[valid_idx]
+  groupe_filtre = groupe[valid_idx]
+  
+  return (SCE(valeur_filtre, groupe_filtre) / SCT(valeur_filtre))
+}
+
+SCT(maishauteur$Hauteur.J7)
+SCE(maishauteur$Hauteur.J7, maishauteur$Parcelle)
+SCR(maishauteur$Hauteur.J7, maishauteur$Parcelle)
+rapport(maishauteur$Hauteur.J7, maishauteur$Parcelle)
+
+#Exercice 9 
+resultat = function(quanti, quali, datagram){
+  for (elem in quanti) {
+    for (elem2 in quali) {
+      r = rapport(datagram[[elem]], datagram[[elem2]])
+      cat( names(datagram)[elem], "   ", names(datagram)[elem2], "         Rapport:", r, "\n")
+    }
+  }
+}
+
+
+resultat(quanti, quali, mais)
+
+
+#Exercice 10
+contPGe = table ( mais$Germination.epi , mais$Parcelle )
+
+#Exercice 11
+mosaicplot(contPGe, color = c( "darkgreen", "goldenrod","lightblue", "darkred"))
+barplot(contPGe)
+
+#Exercice 12
+summary(contPGe)
+
+#Exercice 13
+X2max = function(countPGE){
+  a = dim(countPGE)
+  return (sum(countPGE) * min(a[1]-1, a[2]-1))
+}
+
+X2obs = function(countPGE){
+  summary(countPGE)$statistic
+  
+}
+
+Vcram = function(countPGE){
+  x2max = X2max(countPGE)
+  x2obs = X2obs(countPGE)
+  return (sqrt((x2obs/x2max)))
+}
+
+Vcram(contPGe)
+
+#Exercice 14
+systema = function(quali, datagram){
+  for (elem in quali) {
+    for (elem2 in quali) {
+      valid_idx = !is.na(datagram[[elem]]) & !is.nan(datagram[[elem]]) & 
+        !is.na(datagram[[elem2]]) & !is.nan(datagram[[elem2]])
+      
+      valid_data = datagram[valid_idx, c(elem, elem2)]
+      
+      try_table <- table(valid_data[[1]], valid_data[[2]])
+      
+      r =  Vcram(try_table)
+      if (r != 1){
+      cat( names(datagram)[elem], "   ", names(datagram)[elem2], "         Vcram:", r, "\n")}
+    }
+  }
+}
+
+systema(quali, mais)
+
+#Exercice 15
+plot(mais$Masse.grains, mais$Nb.grains, col="purple", pch = 19)
+
+#Exercice 16
+cor(mais$Masse.grains,  mais$Nb.grains, use = "na.or.complete", method = "pearson")
+cor(mais$Masse.grains,  mais$Nb.grains, use = "na.or.complete", method = "spearman")
+
+#Exercice 17
+pearspear = function (quanti, datagram){
+  for (elem in quanti) {
+    for (elem2 in quanti) {
+      if (elem!=elem2){
+      pear = cor(datagram[elem], datagram[elem2], use = "na.or.complete", method = "pearson")
+      spear = cor(datagram[elem], datagram[elem2], use = "na.or.complete", method = "spearman")
+      cat( names(datagram)[elem], "   ", names(datagram)[elem2], "         pearson:", pear, "           spearman : ", spear, "\n")}
+      
+    }
+    }
+}
+pearspear(quanti, mais)
+
+#Exercice 18
+gigafonction = function(datagram, quanti, quali){
+  resultat(quanti, quali, datagram)
+  systema(quali, datagram)
+  pearspear(quanti, datagram)
+}
+
+gigafonction(mais, quanti, quali)
+
+#Exercice 19

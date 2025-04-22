@@ -90,24 +90,34 @@ static bool fullScreen = false;
 
 // To complete
 void setUnitSphere(Mesh &o_mesh, int nX = 20, int nY = 20) {
-  for (double t = 0.0; t<=2*M_PI;t +=(2*M_PI)/nX){
-    for (double phi = -M_PI/2; phi<=M_PI/2; phi += (M_PI/2)/nY){
-        double x = cos(t)*cos(phi);
-        double y = sin(t)*cos(phi);
-        double z = sin(phi);
-        o_mesh.vertices.push_back(Vec3(x,y,z));
-        o_mesh.normals.push_back(Vec3(x,y,z));
+  o_mesh.vertices.clear();
+  o_mesh.normals.clear();
+  o_mesh.triangles.clear();
+
+  for (int j = 0; j <= nY; ++j) {
+    double phi = M_PI * j / nY - M_PI / 2; // De -π/2 à π/2
+    for (int i = 0; i <= nX; ++i) {
+      double theta = 2 * M_PI * i / nX; // De 0 à 2π
+      double x = cos(phi) * cos(theta);
+      double y = cos(phi) * sin(theta);
+      double z = sin(phi);
+      Vec3 vertex(x, y, z);
+      o_mesh.vertices.push_back(vertex);
+      o_mesh.normals.push_back(vertex); // Normales identiques aux sommets
     }
   }
-  for(int i=0; i <=nX;i++){
-    for (int j=0; j<= nY; j++){
-      int p1 = i*nY+j;
-      int p2 = i*nY+j+1;
-      int p3 = (i+1)*nY+j;
-      int p4 = (i+1)*nY+j+1;
-    o_mesh.triangles.push_back(Triangle(p1, p3, p2));
-    o_mesh.triangles.push_back(Triangle(p3, p2, p4));
-  }}
+    for (int j = 0; j < nY; ++j) {
+    for (int i = 0; i < nX; ++i) {
+      int current = j * (nX + 1) + i;
+      int next = current + nX + 1;
+
+      // Triangle 1
+      o_mesh.triangles.push_back(Triangle(current, next, current + 1));
+
+      // Triangle 2
+      o_mesh.triangles.push_back(Triangle(current + 1, next, next + 1));
+    }
+  }
 }
 
 bool saveOFF(const std::string &filename, std::vector<Vec3> &i_vertices,
